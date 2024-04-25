@@ -59,10 +59,7 @@ def post_detail(request, pk):
 
 def category_posts(request, category_slug):
     template = 'blog/category.html'
-    if category_slug != '':
-        context = {
-            'category_slug': category_slug,
-        }
-    else:
-        return HttpResponseBadRequest("Category slug cannot be empty.")
+    context = {
+        'category_slug': category_slug,
+    }
     return render(request, template, context)
