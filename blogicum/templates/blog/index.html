@@ -18,8 +18,7 @@
         <li>
           Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
         </li>
-      </ul>          
-      <!-- Первые 10 слов -->
+      </ul>
       <p>
         {{ post.text|truncatewords:10 }}
       </p>
