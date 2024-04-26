@@ -53,7 +53,9 @@ def index(request):
 
 def post_detail(request, pk):
     template = 'blog/detail.html'
-    context = {'post': [post for post in reversed(posts) if post['id'] == pk][0]}
+    context = {
+        'post': [post for post in reversed(posts) if post['id'] == pk][0]
+    }
     return render(request, template, context)
 
 
