@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 
@@ -44,6 +45,8 @@ posts = [
     },
 ]
 
+posts_by_id = {post['id']: post for post in posts}
+
 
 def index(request):
     template = 'blog/index.html'
@@ -53,8 +56,12 @@ def index(request):
 
 def post_detail(request, pk):
     template = 'blog/detail.html'
+    try:
+        post = posts_by_id[pk]
+    except KeyError:
+        raise Http404("Post does not exist")
     context = {
-        'post': [post for post in reversed(posts) if post['id'] == pk][0]
+        'post': post
     }
     return render(request, template, context)
 
